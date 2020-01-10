@@ -14,7 +14,7 @@ jupyter:
 ---
 
 # Name(s)
-**PUT YOUR FULL NAME(S) HERE**
+Andrew Bartfeld
 
 
 **Instructions:** This is an individual assignment, but you may discuss your code with your neighbors.
@@ -36,56 +36,103 @@ Please read and reference the following as your progress through this course.
 **In the space provided below, what are three things that still remain unclear or need further explanation?**
 
 
-**YOUR ANSWER HERE**
+1.
+
+2.
+
+3.
 
 
 ## Exercises 1-7
 For the following exercises please read the Python appendix in the Marsland textbook and answer problems A.1-A.7 in the space provided below.
 
+```python
+import numpy as np
+import pandas as pd
+```
 
 ## Exercise 1
 
 ```python
-# YOUR SOLUTION HERE
-#a=1000
-print('this is my answer',a+1) 
+a = np.full((6, 4), 2)
+a
 ```
 
 ## Exercise 2
 
 ```python
-# YOUR SOLUTION HERE
-a=2000
+b = np.ones((6, 4))
+np.fill_diagonal(b, 3)
+b
 ```
 
 ## Exercise 3
 
+`a*b` is element multiplication, which requires the two matrices to be identical in dimension, which a and b fulfill.
+
+`dot(a, b)` is matrix multiplication, which requires the number of columns of one to be equal to the number of rows of the other, which a and b do not fulfill.
+
 ```python
-# YOUR SOLUTION HERE
+c = a * b
+print(c)
+
 ```
 
 ## Exercise 4
 
+Transposing an array basically rotates it about the leading diagonal, swapping the number of rows with the number of columns.
+
+The two results are different dimensions because dotting a mxn array with a nxp array produces a nxn array. The first result is 6x4 dotted with 4x6, producing a 4x4 matrix. The second is 4x6 dotted with 6x4, producing a 6x6 matrix.
+
 ```python
-# YOUR SOLUTION HERE
+print(np.dot(a.transpose(), b))
+print(np.dot(a, b.transpose()))
+
 ```
 
 ## Exercise 5
 
 ```python
-# YOUR SOLUTION HERE
+def foo():
+    print('bar')
+
+foo()
+
 ```
 
 ## Exercise 6
 
 ```python
-# YOUR SOLUTION HERE
+def rand_array(n):
+    for i in range(n):
+        a = np.random.randint(0, 10, (int(np.random.random()*10) + 1, int(np.random.random()*10) + 1))
+        print(a)
+        print('Mean: {}'.format(np.mean(a)))
+        print('Sum: {}'.format(np.sum(a)))
+                       
+rand_array(2) # Change argument to change number of arrays created
+    
+
 ```
 
 ## Exercise 7
 
 ```python
-# YOUR SOLUTION HERE
+def count_ones(arr):
+    i = 0
+    for row in arr:
+        for num in row:
+            if num == 1:
+                i = i + 1
+    return i
+
+print(b)
+count = count_ones(b)
+print(count)
+
+c = np.where(b == 1)
+print(len(c[0]))
+
 ```
 
 ## Excercises 8-???
@@ -96,21 +143,32 @@ While the Marsland book avoids using another popular package called Pandas, we w
 Repeat exercise A.1 from Marsland, but create a Pandas DataFrame instead of a NumPy array.
 
 ```python
-# YOUR SOLUTION HERE
+import pandas as pd
+
+a = np.full((6, 4), 2)
+a = pd.DataFrame(a)
+print(a)
 ```
 
 ## Exercise 9
 Repeat exercise A.2 using a DataFrame instead.
 
 ```python
-# YOUR SOLUTION HERE
+b = np.ones((6, 4), dtype=int)
+np.fill_diagonal(b, 3)
+b = pd.DataFrame(b)
+print(b)
 ```
 
 ## Exercise 10
 Repeat exercise A.3 using DataFrames instead.
 
+`a.dot(b)` doesn't work for the reasons outlined in Exercise 3 above.
+
 ```python
-# YOUR SOLUTION HERE
+res1 = a * b
+print(res1)
+a.dot(b)
 ```
 
 ## Exercise 11
@@ -137,24 +195,22 @@ Notice how we have nice headers and mixed datatypes? That is one of the reasons 
 How do you select the ``name`` column without using .iloc?
 
 ```python
-## YOUR SOLUTION HERE
+titanic_df['name']
 ```
 
 ## Exercise 13
 After setting the index to ``sex``, how do you select all passengers that are ``female``? And how many female passengers are there?
 
 ```python
-## YOUR SOLUTION HERE
 titanic_df.set_index('sex',inplace=True)
+
+titanic_df.loc['female']
+len(titanic_df.loc['female'])
 ```
 
 ## Exercise 14
 How do you reset the index?
 
 ```python
-## YOUR SOLUTION HERE
-```
-
-```python
-
+titanic_df.reset_index()
 ```
