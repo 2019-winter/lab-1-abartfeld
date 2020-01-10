@@ -74,8 +74,8 @@ b
 
 ```python
 c = a * b
-print(c)
-
+# dot(a, b)
+c
 ```
 
 ## Exercise 4
@@ -123,10 +123,9 @@ def count_ones(arr):
     for row in arr:
         for num in row:
             if num == 1:
-                i = i + 1
+                i += 1
     return i
 
-print(b)
 count = count_ones(b)
 print(count)
 
@@ -147,7 +146,7 @@ import pandas as pd
 
 a = np.full((6, 4), 2)
 a = pd.DataFrame(a)
-print(a)
+a
 ```
 
 ## Exercise 9
@@ -157,7 +156,7 @@ Repeat exercise A.2 using a DataFrame instead.
 b = np.ones((6, 4), dtype=int)
 np.fill_diagonal(b, 3)
 b = pd.DataFrame(b)
-print(b)
+b
 ```
 
 ## Exercise 10
@@ -167,15 +166,28 @@ Repeat exercise A.3 using DataFrames instead.
 
 ```python
 res1 = a * b
-print(res1)
-a.dot(b)
+#a.dot(b)
+res1
 ```
 
 ## Exercise 11
 Repeat exercise A.7 using a dataframe.
 
 ```python
-# YOUR SOLUTION HERE
+def count_ones(arr):
+    i = 0
+    for j in range(arr.shape[0]):
+        for k in range(arr.shape[1]):
+            if arr.iloc[j, k] == 1:
+                i += 1
+    return i
+
+count = count_ones(b)
+print(count)
+
+c = np.where(b == 1)
+print(len(c[0]))
+
 ```
 
 ## Exercises 12-14
@@ -202,7 +214,7 @@ titanic_df['name']
 After setting the index to ``sex``, how do you select all passengers that are ``female``? And how many female passengers are there?
 
 ```python
-titanic_df.set_index('sex',inplace=True)
+titanic_df.set_index('sex', inplace=True)
 
 titanic_df.loc['female']
 len(titanic_df.loc['female'])
@@ -213,4 +225,8 @@ How do you reset the index?
 
 ```python
 titanic_df.reset_index()
+```
+
+```python
+
 ```
